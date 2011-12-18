@@ -7,6 +7,7 @@ from Products.Archetypes import atapi
 from Products.ATContentTypes.content import folder
 from Products.ATContentTypes.content import schemata
 
+
 # -*- Message Factory Imported Here -*-
 
 from collective.TemplateUploadCenter.interfaces import ITemplateUploadCenter
@@ -15,6 +16,36 @@ from collective.TemplateUploadCenter.config import PROJECTNAME
 TemplateUploadCenterSchema = folder.ATFolderSchema.copy() + atapi.Schema((
 
     # -*- Your Archetypes field definitions here ... -*-
+    
+    atapi.TextField(
+         name='description',
+         accessor='Description',
+         widget=atapi.TextAreaWidget(
+                label=u'Description',
+                description=u'Description for the Template Upload Center.',
+                i18n_domain='collective.TemplateUploadCenter',
+                rows=6,
+                ),
+         searchable=True,
+         ),
+         
+    atapi.StringField('product_title',
+        default='Templates',
+        widget=atapi.StringWidget(
+            label=u'Product Title',
+            description=u"Title of products when using the project view. For example, 'Add-on Product', 'Extension', or 'Template'.",
+            i18n_domain='collective.TemplateUploadCenter',
+            ),
+    ),     
+
+    atapi.TextField('product_description',
+         default='Templates Templates offer you a way to avoid duplicating repetitive actions when creating new text documents, spreadsheets, or presentations. They also offer a way to maintain consistency of document layout and standard content, and may, for example, be used to maintain consistent branding elements when used in a work place.',
+         widget=atapi.TextAreaWidget(
+                label=u'Description of the Product',
+                description=u'Please provide some text to introduce the product.',
+                i18n_domain='collective.TemplateUploadCenter',
+                ),
+       ),         
 
 ))
 
