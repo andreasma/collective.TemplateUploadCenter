@@ -22,6 +22,7 @@ TemplateUploadCenterSchema = folder.ATFolderSchema.copy() + atapi.Schema((
          accessor='Description',
          widget=atapi.TextAreaWidget(
                 label=u'Description',
+                label_msgid='description',
                 description=u'Description for the Template Upload Center.',
                 i18n_domain='collective.TemplateUploadCenter',
                 rows=6,
@@ -33,6 +34,7 @@ TemplateUploadCenterSchema = folder.ATFolderSchema.copy() + atapi.Schema((
         default='Templates',
         widget=atapi.StringWidget(
             label=u'Product Title',
+            label_msgid='product_title',
             description=u"Title of products when using the project view. For example, 'Add-on Product', 'Extension', or 'Template'.",
             i18n_domain='collective.TemplateUploadCenter',
             ),
@@ -42,6 +44,7 @@ TemplateUploadCenterSchema = folder.ATFolderSchema.copy() + atapi.Schema((
          default='Templates Templates offer you a way to avoid duplicating repetitive actions when creating new text documents, spreadsheets, or presentations. They also offer a way to maintain consistency of document layout and standard content, and may, for example, be used to maintain consistent branding elements when used in a work place.',
          widget=atapi.TextAreaWidget(
                 label=u'Description of the Product',
+                label_msgid='productdescription',
                 description=u'Please provide some text to introduce the product.',
                 i18n_domain='collective.TemplateUploadCenter',
                 ),
