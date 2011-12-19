@@ -2,6 +2,14 @@
 <rolemap>
   <permissions>
     <!-- -*- extra stuff goes here -*- -->
+    <permission name="collective.TemplateUploadCenter: Add Downloadablefile" acquire="False">
+      <role name="Manager" />
+      <role name="Contributor" />
+    </permission>
+    <permission name="collective.TemplateUploadCenter: Add templateproject" acquire="False">
+      <role name="Manager" />
+      <role name="Contributor" />
+    </permission>
     <permission name="collective.TemplateUploadCenter: Add TemplateUploadCenter" acquire="False">
       <role name="Manager" />
       <role name="Contributor" />
