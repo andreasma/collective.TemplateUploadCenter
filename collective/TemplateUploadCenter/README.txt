@@ -48,6 +48,252 @@ Finally, let's return to the front page of our site before continuing
     >>> browser.open(portal_url)
 
 -*- extra stuff goes here -*-
+The Downloadablefile content type
+===============================
+
+In this section we are tesing the Downloadablefile content type by performing
+basic operations like adding, updadating and deleting Downloadablefile content
+items.
+
+Adding a new Downloadablefile content item
+--------------------------------
+
+We use the 'Add new' menu to add a new content item.
+
+    >>> browser.getLink('Add new').click()
+
+Then we select the type of item we want to add. In this case we select
+'Downloadablefile' and click the 'Add' button to get to the add form.
+
+    >>> browser.getControl('Downloadablefile').click()
+    >>> browser.getControl(name='form.button.Add').click()
+    >>> 'Downloadablefile' in browser.contents
+    True
+
+Now we fill the form and submit it.
+
+    >>> browser.getControl(name='title').value = 'Downloadablefile Sample'
+    >>> browser.getControl('Save').click()
+    >>> 'Changes saved' in browser.contents
+    True
+
+And we are done! We added a new 'Downloadablefile' content item to the portal.
+
+Updating an existing Downloadablefile content item
+---------------------------------------
+
+Let's click on the 'edit' tab and update the object attribute values.
+
+    >>> browser.getLink('Edit').click()
+    >>> browser.getControl(name='title').value = 'New Downloadablefile Sample'
+    >>> browser.getControl('Save').click()
+
+We check that the changes were applied.
+
+    >>> 'Changes saved' in browser.contents
+    True
+    >>> 'New Downloadablefile Sample' in browser.contents
+    True
+
+Removing a/an Downloadablefile content item
+--------------------------------
+
+If we go to the home page, we can see a tab with the 'New Downloadablefile
+Sample' title in the global navigation tabs.
+
+    >>> browser.open(portal_url)
+    >>> 'New Downloadablefile Sample' in browser.contents
+    True
+
+Now we are going to delete the 'New Downloadablefile Sample' object. First we
+go to the contents tab and select the 'New Downloadablefile Sample' for
+deletion.
+
+    >>> browser.getLink('Contents').click()
+    >>> browser.getControl('New Downloadablefile Sample').click()
+
+We click on the 'Delete' button.
+
+    >>> browser.getControl('Delete').click()
+    >>> 'Item(s) deleted' in browser.contents
+    True
+
+So, if we go back to the home page, there is no longer a 'New Downloadablefile
+Sample' tab.
+
+    >>> browser.open(portal_url)
+    >>> 'New Downloadablefile Sample' in browser.contents
+    False
+
+Adding a new Downloadablefile content item as contributor
+------------------------------------------------
+
+Not only site managers are allowed to add Downloadablefile content items, but
+also site contributors.
+
+Let's logout and then login as 'contributor', a portal member that has the
+contributor role assigned.
+
+    >>> browser.getLink('Log out').click()
+    >>> browser.open(portal_url + '/login_form')
+    >>> browser.getControl(name='__ac_name').value = 'contributor'
+    >>> browser.getControl(name='__ac_password').value = default_password
+    >>> browser.getControl(name='submit').click()
+    >>> browser.open(portal_url)
+
+We use the 'Add new' menu to add a new content item.
+
+    >>> browser.getLink('Add new').click()
+
+We select 'Downloadablefile' and click the 'Add' button to get to the add form.
+
+    >>> browser.getControl('Downloadablefile').click()
+    >>> browser.getControl(name='form.button.Add').click()
+    >>> 'Downloadablefile' in browser.contents
+    True
+
+Now we fill the form and submit it.
+
+    >>> browser.getControl(name='title').value = 'Downloadablefile Sample'
+    >>> browser.getControl('Save').click()
+    >>> 'Changes saved' in browser.contents
+    True
+
+Done! We added a new Downloadablefile content item logged in as contributor.
+
+Finally, let's login back as manager.
+
+    >>> browser.getLink('Log out').click()
+    >>> browser.open(portal_url + '/login_form')
+    >>> browser.getControl(name='__ac_name').value = portal_owner
+    >>> browser.getControl(name='__ac_password').value = default_password
+    >>> browser.getControl(name='submit').click()
+    >>> browser.open(portal_url)
+
+
+The templateproject content type
+===============================
+
+In this section we are tesing the templateproject content type by performing
+basic operations like adding, updadating and deleting templateproject content
+items.
+
+Adding a new templateproject content item
+--------------------------------
+
+We use the 'Add new' menu to add a new content item.
+
+    >>> browser.getLink('Add new').click()
+
+Then we select the type of item we want to add. In this case we select
+'templateproject' and click the 'Add' button to get to the add form.
+
+    >>> browser.getControl('templateproject').click()
+    >>> browser.getControl(name='form.button.Add').click()
+    >>> 'templateproject' in browser.contents
+    True
+
+Now we fill the form and submit it.
+
+    >>> browser.getControl(name='title').value = 'templateproject Sample'
+    >>> browser.getControl('Save').click()
+    >>> 'Changes saved' in browser.contents
+    True
+
+And we are done! We added a new 'templateproject' content item to the portal.
+
+Updating an existing templateproject content item
+---------------------------------------
+
+Let's click on the 'edit' tab and update the object attribute values.
+
+    >>> browser.getLink('Edit').click()
+    >>> browser.getControl(name='title').value = 'New templateproject Sample'
+    >>> browser.getControl('Save').click()
+
+We check that the changes were applied.
+
+    >>> 'Changes saved' in browser.contents
+    True
+    >>> 'New templateproject Sample' in browser.contents
+    True
+
+Removing a/an templateproject content item
+--------------------------------
+
+If we go to the home page, we can see a tab with the 'New templateproject
+Sample' title in the global navigation tabs.
+
+    >>> browser.open(portal_url)
+    >>> 'New templateproject Sample' in browser.contents
+    True
+
+Now we are going to delete the 'New templateproject Sample' object. First we
+go to the contents tab and select the 'New templateproject Sample' for
+deletion.
+
+    >>> browser.getLink('Contents').click()
+    >>> browser.getControl('New templateproject Sample').click()
+
+We click on the 'Delete' button.
+
+    >>> browser.getControl('Delete').click()
+    >>> 'Item(s) deleted' in browser.contents
+    True
+
+So, if we go back to the home page, there is no longer a 'New templateproject
+Sample' tab.
+
+    >>> browser.open(portal_url)
+    >>> 'New templateproject Sample' in browser.contents
+    False
+
+Adding a new templateproject content item as contributor
+------------------------------------------------
+
+Not only site managers are allowed to add templateproject content items, but
+also site contributors.
+
+Let's logout and then login as 'contributor', a portal member that has the
+contributor role assigned.
+
+    >>> browser.getLink('Log out').click()
+    >>> browser.open(portal_url + '/login_form')
+    >>> browser.getControl(name='__ac_name').value = 'contributor'
+    >>> browser.getControl(name='__ac_password').value = default_password
+    >>> browser.getControl(name='submit').click()
+    >>> browser.open(portal_url)
+
+We use the 'Add new' menu to add a new content item.
+
+    >>> browser.getLink('Add new').click()
+
+We select 'templateproject' and click the 'Add' button to get to the add form.
+
+    >>> browser.getControl('templateproject').click()
+    >>> browser.getControl(name='form.button.Add').click()
+    >>> 'templateproject' in browser.contents
+    True
+
+Now we fill the form and submit it.
+
+    >>> browser.getControl(name='title').value = 'templateproject Sample'
+    >>> browser.getControl('Save').click()
+    >>> 'Changes saved' in browser.contents
+    True
+
+Done! We added a new templateproject content item logged in as contributor.
+
+Finally, let's login back as manager.
+
+    >>> browser.getLink('Log out').click()
+    >>> browser.open(portal_url + '/login_form')
+    >>> browser.getControl(name='__ac_name').value = portal_owner
+    >>> browser.getControl(name='__ac_password').value = default_password
+    >>> browser.getControl(name='submit').click()
+    >>> browser.open(portal_url)
+
+
 The TemplateUploadCenter content type
 ===============================
 
