@@ -6,6 +6,18 @@
   <!-- configure your content components here -->
   
   <!-- -*- extra stuff goes here -*- -->
+  <class class=".downloadablefile.Downloadablefile">
+    <require
+        permission="zope2.View"
+        interface="..interfaces.IDownloadablefile"
+        />
+  </class>
+  <class class=".templateproject.templateproject">
+    <require
+        permission="zope2.View"
+        interface="..interfaces.Itemplateproject"
+        />
+  </class>
   <class class=".templateuploadcenter.TemplateUploadCenter">
     <require
         permission="zope2.View"
