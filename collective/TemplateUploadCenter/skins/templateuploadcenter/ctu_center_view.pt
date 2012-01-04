@@ -18,7 +18,7 @@
 <body>
 <div metal:fill-slot="main"
 	tal:define="view context/@@category_view;
-		psc context/@@softwarecenter_view;
+		psc context/@@templateuploadcenter_view;
 		global getInfoFor nocall:here/portal_workflow/getInfoFor;
 		catalog nocall:here/portal_catalog;
 		herePath python:'/'.join(here.getPhysicalPath());
