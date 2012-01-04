@@ -8,7 +8,7 @@
   <!-- -*- extra stuff goes here -*- -->
   <browser:page
     for="collective.TemplateUploadCenter.interfaces.templateuploadcenter.ITemplateUploadCenter"
-    name="templateuploadcenterview"
+    name="templateuploadcenter_view"
     class=".templateuploadcenter.TemplateCenterView"
     template="../skins/templateuploadcenter/templateuploadcenter_view.pt"
     permission="zope2.View"
