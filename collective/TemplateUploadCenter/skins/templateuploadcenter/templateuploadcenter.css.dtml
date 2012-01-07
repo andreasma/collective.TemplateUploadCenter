@@ -1,0 +1,114 @@
+/* 
+** TemplateUploadCenter style sheet for CSS2-capable browsers.
+**
+** Copyright Andreas Mantke http://www.amantke.de
+** 
+** on the base of plonesoftwarecenter.css.dtml, copyrighted by
+** Alexander Limi - http://www.plonesolutions.com
+**
+** Feel free to use whole or parts of this for your own designs, but give credit
+** where credit is due.
+**
+*/
+
+/* <dtml-with base_properties> */
+
+.portletHalfWidth {
+    width: 45%; 
+    float: left; 
+    margin: 0 1em 1em 0 !important;
+}
+
+.portletThirdWidth {
+    width: 30%; 
+    float: left; 
+    margin: 0 1em 1em 0 !important;
+}
+
+
+.state-being-discussed {
+    color: Black;
+}
+
+.state-in-progress {
+    color: &dtml-notifyBorderColor;;
+}
+
+.state-completed {
+    color: &dtml-linkColor;;
+}
+
+.state-rejected {
+    color: &dtml-discreetColor;;
+}
+
+.state-deferred {
+    color: Red;
+}
+
+.state-ready-for-merge {
+    color: #74AE0B;
+}
+
+.poweredBy { 
+}
+
+.note {
+    border-color: #CCCCCC;
+    border-style: solid;
+    border-width: thin 0 0 thin;
+    margin: 2em;
+    padding: 0 0.5em 0 1em;
+}
+
+.warning {
+    border-color: #CCCCCC;
+    border-style: solid;
+    border-width: thin 0 0 thin;
+    margin: 2em;
+    padding: 0 0.5em 0 1em;
+    color: red;
+}
+
+.extensionsubmit {
+   background-color: #18A303;
+   color: white;
+   font-size: 15pt;
+   height: 3em;
+   margin: 0.5em 0em 0.5em 0em;
+   padding: 0.5em;
+   
+}
+
+.buttondirecttoproject {
+   float: right;
+   clear: right;
+   margin: 1.5em 0em 0.5em;
+   font-size: 12pt;
+   padding: 0.25em;
+   background-color: #43C330;
+
+}
+
+.loginextension {
+   background-color: #18A303;
+   color: white;
+   font-size: 15pt;
+   height: 3em;
+   margin: 0.5em 0em 0.5em 0em;
+   padding: 0.5em;
+}
+
+#content .discreet {
+   font-size: 90%;
+}
+
+.portletHeaderlibreoffice {
+   background-color: green;
+}
+
+#content {
+   font-size: 90%;
+}
+
+/* </dtml-with> */
