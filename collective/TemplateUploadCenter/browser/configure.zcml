@@ -6,9 +6,18 @@
   <include package="plone.app.contentmenu" />
 
   <!-- -*- extra stuff goes here -*- -->
+  
+  
+    <!-- Resource directory for stylesheets -->
+    <browser:resourceDirectory
+      name="collective.TemplateUploadCenter.stylesheets"
+      directory="stylesheets"
+      />
+  
+  
   <browser:page
     for="collective.TemplateUploadCenter.interfaces.templateuploadcenter.ITemplateUploadCenter"
-    name="templateuploadcenter_view"
+    name="templatecenter_view"
     class=".templateuploadcenter.TemplateCenterView"
     template="../skins/templateuploadcenter/templateuploadcenter_view.pt"
     permission="zope2.View"
