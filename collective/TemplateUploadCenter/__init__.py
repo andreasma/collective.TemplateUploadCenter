@@ -7,6 +7,14 @@ from collective.TemplateUploadCenter import config
 from Products.Archetypes import atapi
 from Products.CMFCore import utils
 
+# Extra stuff to import
+from Products.CMFCore.utils import ContentInit
+from Products.CMFCore.DirectoryView import registerDirectory
+
+from Products.Archetypes.atapi import listTypes, process_types
+from Products.CMFCore import permissions
+from Products.validation import validation
+
 # Define a message factory for when this product is internationalised.
 # This will be imported with the special name "_" in most modules. Strings
 # like _(u"message") will then be extracted by i18n tools for translation.
