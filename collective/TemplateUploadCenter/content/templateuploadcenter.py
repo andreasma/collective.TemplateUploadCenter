@@ -117,7 +117,25 @@ TemplateUploadCenterSchema = folder.ATFolderSchema.copy() + atapi.Schema((
                 description=u'Please provide some text to introduce the product.',
                 i18n_domain='collective.TemplateUploadCenter',
                 ),
-       ),         
+       ),   
+                                                                          
+     
+    SimpleDataGridField('availableCategories',
+            columns=3,
+        column_names=('id', 'title', 'description'),
+        default=[
+            'standalone|Stand-alone products|Projects that are self-contained.', 
+            'add-on|Add-on components|Projects that provide additional functionality.', 
+            'infrastructure|Infrastructure|Projects that provide services.',
+        ],
+        widget=SimpleDataGridWidget(
+            label=u'Categories',
+            description=u'Define the available categories for classifying the projects. The format is Short Name | Long name | Description. The id must be unique.',
+            label_msgid='availablecategories',
+            i18n_domain='collective.TemplateUploadCenter',
+            rows=6,
+        ),
+    ),                                                                        
 
 ))
 
@@ -139,7 +157,7 @@ class TemplateUploadCenter(folder.ATFolder):
 
     archetype_name= 'Template Center'
     meta_type = "TemplateUploadCenter"
-    immediate_view = default_view ="templateuploadcenter_view"
+    immediate_view = default_view ="templatecenter_view"
     suppl_views = ()
 
     global_allow = 1
