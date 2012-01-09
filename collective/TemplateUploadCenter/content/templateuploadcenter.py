@@ -135,7 +135,29 @@ TemplateUploadCenterSchema = folder.ATFolderSchema.copy() + atapi.Schema((
             i18n_domain='collective.TemplateUploadCenter',
             rows=6,
         ),
-    ),                                                                        
+    ),   
+                                                                          
+    SimpleDataGridField('availableLicenses',
+        column_names=('id', 'title', 'url'),
+        columns=3,
+        default=[
+            'GPL|GPL - GNU General Public License|http://creativecommons.org/licenses/GPL/2.0/',
+            'LGPL|LGPL - GNU Lesser General Public License|http://creativecommons.org/licenses/LGPL/2.1/',
+            'BSD|BSD License (revised)|http://opensource.org/licenses/bsd-license',
+            'Freeware|Freeware|http://wikipedia.org/Freeware',
+            'Public Domain|Public Domain|http://creativecommons.org/licenses/publicdomain',
+            'OSI|Other OSI Approved|http://opensource.org/licenses',
+            'ZPL|Zope Public License (ZPL)|http://opensource.org/licenses/zpl',
+            'Commercial|Commercial License|http://plone.org/documentation/faq/plone-license',
+        ],
+        widget=SimpleDataGridWidget(
+            label=u'Available licenses',
+            description=u'Define the available licenses for software releases. The format is Short Name | Title | URL.',
+            i18n_domain='collective.TemplateUploadCenter',
+            rows=6,
+        ),
+    ),
+                                                                                                                                           
 
 ))
 
