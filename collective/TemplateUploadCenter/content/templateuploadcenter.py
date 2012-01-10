@@ -135,8 +135,9 @@ TemplateUploadCenterSchema = folder.ATFolderSchema.copy() + atapi.Schema((
             i18n_domain='collective.TemplateUploadCenter',
             rows=6,
         ),
-    ),   
-                                                                          
+    ),       
+
+                                                                      
     SimpleDataGridField('availableLicenses',
         column_names=('id', 'title', 'url'),
         columns=3,
@@ -157,7 +158,84 @@ TemplateUploadCenterSchema = folder.ATFolderSchema.copy() + atapi.Schema((
             rows=6,
         ),
     ),
-                                                                                                                                           
+                                                                          
+    
+    atapi.TextField('installation_instructions',
+        default='If you are using Plone 3.2 or higher, you probably want to install '
+                'this product with buildout. See <a href="http://plone.org/'
+                'documentation/kb/third-party-products/installing">our tutorial on '
+                'installing add-on products with buildout</a> for more information.',
+        default_content_type='text/html',
+        default_output_type='text/html',
+        widget=atapi.TextAreaWidget(
+            label=u'Product Installation Instructions',
+            description=u'Enter any installation instructions that should appear on each product page.',
+            i18n_domain='collective.TemplateUploadCenter',
+            rows=6,
+        ),
+    ),                                                                          
+
+                                                                      
+    atapi.TextField('title_legaldisclaimer',
+       default='Legal Disclaimer and Limitations',
+       widget=atapi.TextAreaWidget(
+            label=u'Title for Legal Disclaimer and Limitations',
+            description=u'Enter any title for the legal disclaimer and limitations for downloads that should appear on each page for the upload of dowloadable files. This is the disclaimer, every contributor had to agree with.',
+            i18n_domain='collective.TemplateUploadCenter',
+            rows=2,
+        ),
+    ),
+                                                                       
+        
+
+   atapi.TextField('legal_disclaimer and Limitations',
+       default='<h5>Legal Disclaimer</h5>'
+               '<p>Fill in here the content of your legal disclaimer.</p>',
+       default_content_type='text/html',
+       default_output_type='text/html',
+       widget=atapi.TextAreaWidget(
+            label=u'Legal Disclaimer and Limitations',
+            description=u'Enter any legal disclaimer and limitations that should appear on each page for dowloadable files.',
+            i18n_domain='collective.TemplateUploadCenter',
+            rows=40,
+        ),
+    ),                                                                                                                                                 
+
+                                                                      
+  atapi.TextField('title_legaldownloaddisclaimer',
+       default='Legal Disclaimer and Limitations for Downloads',
+       widget=atapi.TextAreaWidget(
+            label=u'Title for Legal Disclaimer and Limitations for Downlaods',
+            description=u'Enter any title for the legal disclaimer and limitations for downloads that should appear on each page for dowloadable files.',
+            i18n_domain='collective.TemplateUploadCenter',
+            rows=1,
+        ),
+    ),
+                                                                      
+  atapi.TextField('subtitle_legaldownloaddisclaimer',
+       default="Responsibility of Websiteuser",
+       widget=atapi.TextAreaWidget(
+            label=u'Sub-Title for Legal Disclaimer and Limitations for Downlaods',
+            description=u'Enter any subtitle for the legal disclaimer and limitations for downloads that should appear on each page for dowloadable files.',
+            i18n_domain='collective.TemplateUploadCenter',
+            rows=1,
+        ),
+    ),
+                                                                                                                                                     
+    atapi.TextField('legal_downloaddisclaimer',
+        default='<h5>Responsibility of Websiteuser</h5><p>Here goes your legal advise for users which download your product</p>',
+        default_content_type='text/html',
+        default_output_type='text/html',
+        widget=atapi.TextAreaWidget(
+            label=u'Legal Disclaimer and Limitations for Downlaods',
+            description=u'Enter any legal disclaimer and limitations for downloads that should appear on each page for dowloadable files.',
+            i18n_domain='collective.TemplateUploadCenter',
+            rows=20,
+        ),
+    ),                 
+
+
+# Todo: StringField('storageStrategy' after implementing method getFileStorageStrategyVocab
 
 ))
 
@@ -179,7 +257,7 @@ class TemplateUploadCenter(folder.ATFolder):
 
     archetype_name= 'Template Center'
     meta_type = "TemplateUploadCenter"
-    immediate_view = default_view ="templatecenter_view"
+    immediate_view = default_view ="templateuploadcenter_view"
     suppl_views = ()
 
     global_allow = 1
