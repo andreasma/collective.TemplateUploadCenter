@@ -17,7 +17,7 @@
 <body>
 
   <div metal:fill-slot="main"
-       >
+       tal:define="view nocall:context/@@templateuploadcenter_view">
 
     <h1 tal:content="context/title_or_id" class="documentFirstHeading">
       <tal:comment replace="nothing">Title or id</tal:comment>
