@@ -2,7 +2,7 @@
 """
 
 from zope.interface import implements
-
+from collective.TemplateUploadCenter.storage import getFileStorageVocab
 from Products.Archetypes import atapi
 from Products.ATContentTypes.content import folder
 from Products.ATContentTypes.content import schemata
@@ -36,6 +36,7 @@ TemplateUploadCenterSchema = folder.ATFolderSchema.copy() + atapi.Schema((
     atapi.TextField(
          name='description',
          accessor='Description',
+         #storage=MetadataStorage(),
          widget=atapi.TextAreaWidget(
                 label=u'Description',
                 label_msgid='description',
@@ -234,6 +235,16 @@ TemplateUploadCenterSchema = folder.ATFolderSchema.copy() + atapi.Schema((
         ),
     ),                 
 
+
+    atapi.StringField('storageStrategy',
+        default='archetype',
+        vocabulary='getFileStorageStrategyVocab',
+        widget=atapi.SelectionWidget(
+            label=u"Storage strategy",
+            description=u"Defines the storage strategies for files",
+            i18n_domain="collective.TemplateUploadCenter",
+        ),
+),          
 
 # Todo: StringField('storageStrategy' after implementing method getFileStorageStrategyVocab
 
