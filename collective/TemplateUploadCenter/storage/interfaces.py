@@ -1,7 +1,7 @@
 from zope.interface import Interface
 import zope.schema
 
-class collective.templateuploadcenter(Interface):
+class ITUCFileStorage(Interface):
     """adapter for storing file"""
 
     def get(name, instance, **kwargs):
