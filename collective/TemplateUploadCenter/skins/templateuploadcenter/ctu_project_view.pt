@@ -1,0 +1,95 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      metal:use-macro="here/main_template/macros/master"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      i18n:domain="collective.TemplateUploadCenter">
+
+<head>
+    <metal:css fill-slot="style_slot">
+      <style type="text/css" media="all"
+             tal:content="string:@import url($portal_url/templateuploadcenter.css);"></style>
+    </metal:css>
+</head>
+
+<body>
+
+<div metal:fill-slot="main"
+     >
+
+        <h1 class="documentFirstHeading">
+            <span tal:replace="here/title_or_id">Title or id</span>
+        </h1>
+
+        <div tal:content="structure provider:plone.belowcontenttitle" />
+        <p class="documentDescription"
+             tal:content="here/Description">
+            <tal:comment replace="nothing">description</tal:comment>
+        </p>
+
+        <h2 i18n:translate="label_project_description">Project Description</h2>
+    
+        <div id="project_logo_wrapper"
+         tal:condition="here/getLogo | nothing">
+            <a tal:omit-tag="not: here/getLogoURL"
+               tal:attributes="href here/getLogoURL">
+                <img tal:replace="structure here/getLogo" />
+            </a>
+        </div>
+         
+        <div tal:replace="structure here/getText" />
+        
+        <div class="visualClear"></div>
+ 
+         
+        <tal:block tal:condition="view/has_review_comment|nothing"> 
+            <h2 tal:condition="here/isApproved|nothing" i18n:translate="label_independent_review">Independent Review</h2>
+            <p content="structure here/getReviewComment" /> 
+            <p tal:condition="here/isApproved|nothing">
+                <i i18n:translate="help_independent_review">This project has been approved via independent review.</i>
+            </p>
+            <h3 tal:condition="here/isApproved|nothing" i18n:translate="label_review_comment">Independent Review Comment</h3>
+            <p tal:condition="here/isApproved|nothing">
+                <span tal:replace="here/reviewComment" />
+            </p>
+        </tal:block> 
+        
+        
+           <div class="pane">
+           <h2 i18n:translate="">All Template files of this Project</h2>
+           <table class="listing release_table">
+                <thead>
+                    <tr>
+                        <th i18n:translate="">Version</th>
+                        <th i18n:translate="">Released</th>
+                        <th i18n:translate="">Description</th>
+                        <th i18n:translate="">Compatibility</th>
+                        <th i18n:translate="">Licenses</th>
+                        <th i18n:translate="">Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                   <tr>
+                       <td></td>
+                       <td></td>
+                       <td></td>
+                       <td></td>
+                       <td></td>
+                       <td></td>
+                   </tr>
+                </tbody>
+            </table>
+         </div>     
+        
+              
+        <div class="visualClear"></div>
+
+    </div>
+    <div class="legaldisclaimer">
+    <h3  tal:content="view/get_title_legaldownloaddisclaimer" />
+    <h4 tal:content="view/get_subtitle_legaldownloaddisclaimer" />
+    <p  tal:content="structure view/get_legal_downloaddisclaimer" />
+     </div>     
+ 
+</body>
+</html>

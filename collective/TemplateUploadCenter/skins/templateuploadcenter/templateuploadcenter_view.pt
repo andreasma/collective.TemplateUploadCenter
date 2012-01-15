@@ -5,7 +5,7 @@
       xmlns:metal="http://xml.zope.org/namespaces/metal"
       metal:use-macro="context/main_template/macros/master"
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-      i18n:domain="collective.templateuploadcenter">
+      i18n:domain="collective.TemplateUploadCenter">
 
 <head>
     <metal:css fill-slot="style_slot">
@@ -23,6 +23,16 @@
       <tal:comment replace="nothing">Title or id</tal:comment>
     </h1>
 
+    
+    <div class="feedButton" >
+       <a href="" tal:attributes="href view/rss_url">
+              <img i18n:attributes="title title_rss_feed; alt label_rss_feed;"
+                   tal:attributes="src string:$portal_url/rss.gif"
+                   src="rss.gif"
+                   alt="RSS Feed"
+                   title="RSS feed of the latest releases" />
+         </a>
+    </div>
     
     
     <p class="documentDescription"
@@ -47,10 +57,10 @@
 
     <div class="poweredBy">
       <span i18n:translate="label_powered_by">Powered by </span>
-      <a class="link-plain" href="http://plone.org/products/plonesoftwarecenter"
-         title="Plone Software Center's Home Page"
+      <a class="link-plain" href="https://github.com/andreasma/collective.TemplateUploadCenter"
+         title="Template Upload Center's Home Page"
          i18n:attributes="title title_psc_homepage">
-            <span i18n:translate="label_powered_by_psc">Plone Software Center</span>
+            <span i18n:translate="label_powered_by_psc">Template Upload Center for Plone</span>
       </a>
     </div>
 
