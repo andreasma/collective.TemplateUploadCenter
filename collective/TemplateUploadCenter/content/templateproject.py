@@ -27,6 +27,7 @@ import DateTime
 
 from collective.TemplateUploadCenter.interfaces import Itemplateproject
 from collective.TemplateUploadCenter.config import PROJECTNAME
+from collective.TemplateUploadCenter import config
 
 templateprojectSchema = folder.ATFolderSchema.copy() + atapi.Schema((
 
@@ -211,7 +212,7 @@ templateprojectSchema = folder.ATFolderSchema.copy() + atapi.Schema((
     atapi.ImageField('logo',
         required=0,
         original_size=(150,75),
-        #sizes=config.IMAGE_SIZES,
+        sizes=config.IMAGE_SIZES,
         widget=atapi.ImageWidget(
             label=u'Logo',
             description=u"Add a logo for the project (or organization/company) by clicking the 'Browse' button. Max 150x75 pixels (will be resized if bigger).",
@@ -233,7 +234,7 @@ templateprojectSchema = folder.ATFolderSchema.copy() + atapi.Schema((
     atapi.ImageField('screenshot',
         required=0,
         original_size=(800,600),
-        #sizes=config.IMAGE_SIZES,
+        sizes=config.IMAGE_SIZES,
         widget=atapi.ImageWidget(
             label=u'Screenshot',
             description=u"Add a screenshot by clicking the 'Browse' button. Max 800x600 (will be resized if bigger).",
