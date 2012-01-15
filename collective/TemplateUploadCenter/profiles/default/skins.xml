@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<object name="portal_skins">
+ <object name="AddRemoveWidget" meta_type="Filesystem Directory View"
+    directory="AddRemoveWidget/skins/AddRemoveWidget"/>
+ <object name="DataGridWidget" meta_type="Filesystem Directory View"
+    directory="DataGridField/skins/DataGridWidget"/>
+ <object name="archaddon" meta_type="Filesystem Directory View"
+    directory="ArchAddOn/skins/archaddon"/>
+ <object name="templateuploadcenter" meta_type="Filesystem Directory View"
+    directory="TemplateUploadCenter/skins/templateuploadcenter"/>
+ <object name="templateuploadcenter_images"
+    meta_type="Filesystem Directory View"
+    directory="TemplateUploadCenter/skins/templateuploadcenter_images"/>
+ <skin-path name="*">
+  <layer name="templateuploadcenter_images" 
+     insert-after="custom"/>
+  <layer name="templateuploadcenter" 
+     insert-after="templateuploadcenter_images"/>
+  <layer name="DataGridWidget"
+     insert-after="templateuploadcenter"/>
+  <layer name="archaddon" 
+     insert-after="DataGridWidget"/>
+  <layer name="AddRemoveWidget" 
+     insert-after="archaddon"/>
+ </skin-path>
+</object>
