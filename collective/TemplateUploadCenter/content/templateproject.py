@@ -268,5 +268,14 @@ class templateproject(folder.ATFolder):
     description = atapi.ATFieldProperty('description')
 
     # -*- Your ATSchema to Python Property Bridges Here ... -*-
+    
+    security = ClassSecurityInfo()
+        
+    security.declareProtected(permissions.View, 'getCategoriesVocab')
+    def getCategoriesVocab(self):
+        """Get categories vocabulary from parent project area via acquisition.
+        """
+        return self.getAvailableCategoriesAsDisplayList()
+    
 
 atapi.registerType(templateproject, PROJECTNAME)
