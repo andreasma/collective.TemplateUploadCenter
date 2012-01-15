@@ -17,11 +17,19 @@
   
   <browser:page
     for="collective.TemplateUploadCenter.interfaces.templateuploadcenter.ITemplateUploadCenter"
-    name="templatecenter_view"
+    name="templateuploadcenter_view"
     class=".templateuploadcenter.TemplateCenterView"
     template="../skins/templateuploadcenter/templateuploadcenter_view.pt"
     permission="zope2.View"
     />
-
+  
+  <browser:page
+    for="collective.TemplateUploadCenter.interfaces.templateproject.Itemplateproject"
+    name="ctu_project_view"
+    class=".templateproject.TemplateProjectView"
+    template="../skins/templateuploadcenter/ctu_project_view.pt"
+    permission="zope2.View"
+    />
+    
 </configure>
 
