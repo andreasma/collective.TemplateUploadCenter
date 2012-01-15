@@ -4,6 +4,7 @@ import re
 from AccessControl import ClassSecurityInfo
 from Products.CMFCore import permissions
 from collective.TemplateUploadCenter.storage import DynamicStorage
+from Products.Archetypes.atapi import DisplayList
 
 
 from zope.interface import implements
@@ -51,7 +52,62 @@ DownloadablefileSchema = schemata.ATContentTypeSchema.copy() + atapi.Schema((
         ),
         storage=DynamicStorage(),
     ),
-                                    
+  
+  
+    atapi.StringField(
+        name='license',
+        required=1,
+        vocabulary='getLicenseVocab',
+        widget=atapi.SelectionWidget(
+            format = 'radio',
+            label=u"License",
+            description=u"License of the file: Please examine carefully which license you choose for your contribution. You can't  change it after the release.",
+            i18n_domain='collective.TemplateUploadCenter',
+        ),
+    ),
+                           
+  
+    atapi.StringField(
+        name='license2',
+        required=0,
+        vocabulary='getLicenseVocab',
+        widget=atapi.SelectionWidget(
+            format = 'radio',
+            label=u"Second License",
+            description=u"Second License (if published under different licenses)",
+            i18n_domain='collective.TemplateUploadCenter',
+        ),
+    ),
+                                                                             
+  
+    atapi.StringField(
+        name='license3',
+        required=0,
+        vocabulary='getLicenseVocab',
+        widget=atapi.SelectionWidget(
+            format = 'radio',
+            label=u"Third License",
+            description=u"Third License (if published under different licenses).",
+            i18n_domain='collective.TemplateUploadCenter',
+        ),
+    ),                                                                             
+
+
+
+    atapi.LinesField(
+        name='compatibility',
+        required=1,
+        searchable=1,
+        index='KeywordIndex:schema',
+        vocabulary='getCompatibilityVocab',
+        widget=atapi.MultiSelectionWidget(
+            label=u"Compatibility",
+            description=u"Tested and working with the following versions:",
+            i18n_domain='collective.TemplateUploadCenter',
+        ),
+    ),
+
+
 
     atapi.BooleanField('acceptdisclaimer',
         required=1,
@@ -108,5 +164,20 @@ class Downloadablefile(ATCTFileContent):
         """Set id to uploaded id
         """
         self._setATCTFileContent(value, **kwargs)
+        
+    security.declareProtected(permissions.View, 'getLicenseVocab')
+    def getLicenseVocab(self):
+        """Get the available licenses from the parent project area via
+         acqusition.
+        """
+        return self.getAvailableLicensesAsDisplayList()
+    
+    security.declareProtected(permissions.View, 'getCompatibilityVocab')
+    def getCompatibilityVocab(self):
+        """Get the available compatability versions from the parent project
+           area via acqusition.
+        """
+        return self.getAvailableVersionsAsDisplayList()
+            
 
 atapi.registerType(Downloadablefile, PROJECTNAME)

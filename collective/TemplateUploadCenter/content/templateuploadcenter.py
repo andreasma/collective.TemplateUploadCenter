@@ -1,6 +1,6 @@
 """Definition of the TemplateUploadCenter content type
 """
-
+from Products.Archetypes.atapi import DisplayList
 from zope.interface import implements
 from collective.TemplateUploadCenter.storage import getFileStorageVocab
 from Products.Archetypes import atapi
