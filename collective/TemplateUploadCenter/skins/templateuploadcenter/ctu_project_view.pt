@@ -54,9 +54,8 @@
             </p>
         </tal:block> 
         
-        
            <div class="pane">
-           <h2 i18n:translate="">All Template files of this Project</h2>
+           <h2 i18n:translate="">All Template Files of this Project</h2>
            <table class="listing release_table">
                 <thead>
                     <tr>
@@ -84,12 +83,13 @@
               
         <div class="visualClear"></div>
 
-    </div>
+
     <div class="legaldisclaimer">
+    <h3>This is a test text</h3>
     <h3  tal:content="view/get_title_legaldownloaddisclaimer" />
     <h4 tal:content="view/get_subtitle_legaldownloaddisclaimer" />
     <p  tal:content="structure view/get_legal_downloaddisclaimer" />
      </div>     
- 
+     </div>
 </body>
 </html>
