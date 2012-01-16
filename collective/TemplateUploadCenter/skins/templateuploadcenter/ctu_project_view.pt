@@ -16,6 +16,9 @@
 
 <div metal:fill-slot="main"
      >
+     <div metal:define-macro="main"
+        tal:define="is_editable context/@@plone_context_state/is_editable;
+                   ">
 
         <h1 class="documentFirstHeading">
             <span tal:replace="here/title_or_id">Title or id</span>
@@ -39,9 +42,33 @@
          
         <div tal:replace="structure here/getText" />
         
-        <div class="visualClear"></div>
+
  
-         
+    <h2 i18n:translate="heading_available_template_files">
+      Available Template Files
+    </h2>
+ 
+    <div style="margin-top: 1em;">
+
+      <tal:nodownloads tal:condition="not: here/contentValues">
+
+        <div class="discreet">
+          <span i18n:translate="description_no_available_files">
+            There are no available template files in this project yet.
+          </span>
+                   <span tal:condition="is_editable"
+            i18n:translate="description_use_add_menu_to_add_files">
+            Use the Add menu to add software files.
+          </span>
+        </div>
+        
+      </tal:nodownloads>
+        
+ </div>
+ 
+                 <div class="visualClear"></div>
+                 
+                 
         <tal:block tal:condition="view/has_review_comment|nothing"> 
             <h2 tal:condition="here/isApproved|nothing" i18n:translate="label_independent_review">Independent Review</h2>
             <p content="structure here/getReviewComment" /> 
@@ -85,11 +112,11 @@
 
 
     <div class="legaldisclaimer">
-    <h3>This is a test text</h3>
     <h3  tal:content="view/get_title_legaldownloaddisclaimer" />
     <h4 tal:content="view/get_subtitle_legaldownloaddisclaimer" />
     <p  tal:content="structure view/get_legal_downloaddisclaimer" />
      </div>     
+     </div>
      </div>
 </body>
 </html>
