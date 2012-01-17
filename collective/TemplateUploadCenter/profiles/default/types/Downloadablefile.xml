@@ -4,14 +4,15 @@
    i18n:domain="collective.TemplateUploadCenter" xmlns:i18n="http://xml.zope.org/namespaces/i18n">
   <property name="title" i18n:translate="">Downloadablefile</property>
   <property name="description"
-    i18n:translate="">Downloadble file</property>
+    i18n:translate="">Contains the downloadble file for a project.</property>
   <property name="content_meta_type">Downloadablefile</property>
-  <property name="content_icon">document_icon.gif</property>
+  <property name="content_icon">file_icon.gif</property>
   <property name="product">collective.TemplateUploadCenter</property>
   <property name="factory">addDownloadablefile</property>
   <property name="immediate_view">atct_edit</property>
   <property name="global_allow">False</property>
   <property name="filter_content_types">False</property>
+  <property name="allowed_content_types"/>
   <property name="allow_discussion">False</property>
   <property name="default_view">base_view</property>
   <property name="view_methods">
@@ -29,4 +30,25 @@
     url_expr="string:${object_url}/edit" visible="True">
     <permission value="Modify portal content" />
   </action>
+   <action title="Properties" action_id="metadata" category="object"
+    condition_expr="" url_expr="string:${object_url}/properties"
+    visible="True">
+  <permission value="Modify portal content"/>
+ </action>
+ <action title="References" action_id="references" category="object"
+    condition_expr="object/archetype_tool/has_graphviz"
+    url_expr="string:${object_url}/reference_graph" visible="True">
+  <permission value="Modify portal content"/>
+  <permission value="Review portal content"/>
+ </action>
+ <action title="Download" action_id="download" category="object"
+    condition_expr="member" url_expr="string:${object_url}/download"
+    visible="False">
+  <permission value="View"/>
+ </action>
+ <action title="External Edit" action_id="external_edit" category="object"
+    condition_expr="object/externalEditorEnabled"
+    url_expr="string:${object_url}/external_edit" visible="False">
+  <permission value="Modify portal content"/>
+ </action>
 </object>
