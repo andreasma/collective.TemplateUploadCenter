@@ -241,7 +241,22 @@ templateprojectSchema = folder.ATFolderSchema.copy() + atapi.Schema((
             i18n_domain="collective.TemplateUploadCenter",
         ),
     ),
+                                                                             
+                                                                                 
+    atapi.TextField('contributors',
+        widget=atapi.TextAreaWidget(
+            i18n_domain='collective.TemplateUploadCenter',
+            visible = {'edit' : 'hidden', 'view' : 'hidden'},
+                                    ),
+                    ),
 
+                                                                             
+    atapi.TextField('rights',
+        widget=atapi.TextAreaWidget(
+            i18n_domain='collective.TemplateUploadCenter',
+            visible = {'edit' : 'hidden', 'view' : 'hidden'},
+                                    ),
+                    ),
 
 ))
 

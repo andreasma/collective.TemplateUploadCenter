@@ -39,7 +39,21 @@ DownloadablefileSchema = schemata.ATContentTypeSchema.copy() + atapi.Schema((
             
         ),
     ),
-
+    
+    atapi.TextField('description',
+        default='',
+        required=1,
+        searchable=1,
+        accessor="Description",
+        widget=atapi.TextAreaWidget(
+            label=u"Description of the file and it's features",
+            description=u"Give a Description of the file that you upload; especially of it's featrures",
+            i18n_domain="collective.TemplateUploadCenter",
+            rows=6,  
+        ),
+    ),
+    
+    
     atapi.FileField('downloadableFile',
         primary=1,
         required=1,
@@ -117,6 +131,22 @@ DownloadablefileSchema = schemata.ATContentTypeSchema.copy() + atapi.Schema((
              i18n_domain="collective.TemplateUploadCenter",               
         ),
     ),
+                                                                             
+                                                                                 
+    atapi.TextField('contributors',
+        widget=atapi.TextAreaWidget(
+            i18n_domain='collective.TemplateUploadCenter',
+            visible = {'edit' : 'hidden', 'view' : 'hidden'},
+                                    ),
+                    ),
+
+                                                                             
+    atapi.TextField('rights',
+        widget=atapi.TextAreaWidget(
+            i18n_domain='collective.TemplateUploadCenter',
+            visible = {'edit' : 'hidden', 'view' : 'hidden'},
+                                    ),
+                    ),
 
 ))
 
@@ -135,6 +165,8 @@ class Downloadablefile(ATCTFileContent):
     archetype_name = 'Downloadable File'
     meta_type = "Downloadablefile"
     content_icon = 'file_icon.gif'
+    immediate_view = default_view = 'ctu_file_view'
+    suppl_views = ()
     schema = DownloadablefileSchema
     global_allow=False
 
