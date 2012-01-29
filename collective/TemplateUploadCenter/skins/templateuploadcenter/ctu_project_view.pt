@@ -130,7 +130,7 @@
               
         <div class="visualClear"></div>
 
-
+ 
     <div class="legaldisclaimer">
     <h3  tal:content="view/get_title_legaldownloaddisclaimer" />
     <h4 tal:content="view/get_subtitle_legaldownloaddisclaimer" />

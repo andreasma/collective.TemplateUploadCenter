@@ -37,7 +37,7 @@
 
 			<span tal:content="structure here/addon_description | nothing"/>
             <p class="current-projects" i18n:translate="">Currently there are <span tal:content="here/product_title" i18n:name="product_title" /> projects 
-				with  releases available.
+				with  downloadable files available.
 			</p>
 			<a class="pointer" tal:attributes="href string:${here/absolute_url}/createObject?type_name=templateproject" i18n:translate="">Submit your <span tal:content="here/product_title | string:Add-on" i18n:name="product_title_addon" /></a>
 		</div>
