@@ -25,6 +25,7 @@
             currentCategory request/getCategories | string:;
             currentVersion request/getCompatibility | string:any;
             SearchableText request/SearchableText | string:;
+            currentCategory request/getCategories | string:;
 
             cropText nocall:context/@@plone/cropText;
 		    toLocalizedTime nocall:context/@@plone/toLocalizedTime;">
@@ -54,19 +55,26 @@
 
         <form id="product_select" class="even" style="padding: 1em" action="#" tal:attributes="action string:${here/absolute_url}">
             <label i18n:translate="label_show">Show</label>
-            <select name="getCategories">
+            <select name="getCategories" onchange="this.form.submit()">
                 <option value="" i18n:translate="label_all_categories">All categories</option>
                 <tal:block tal:repeat="cat here/availableCategories">
-                    
+                    <option tal:define="csplit python:[s.strip() for s in cat.split('|')]; cid python:csplit[0]"
+                                tal:content="python:csplit[1]" />
                 </tal:block>
             </select>
             <label i18n:translate="label_for">for</label>
-            <select name="getCompatibility">
+            <select name="getCompatibility" onchange="this.form.submit()">
                 <tal:block tal:repeat="version here/getAvailableVersions">
-                    <option value="LibreOffice 3.5">LibreOffice 3.5</option>
-                   
+                   <option tal:content="version"
+                                    tal:attributes="value version;
+                                    ">
+                                <tal:comment replace="nothing">Plone 3.0</tal:comment>
+                            </option>
                 </tal:block>
-                
+                <option value="any"
+                        i18n:translate="label_any_version">
+                    Any version
+                </option>
                 <tal:block condition="nothing" tal:repeat="version python:catalog.uniqueValuesFor('getCompatibility')">
                     <option tal:content="version"
                             tal:attributes="value version;
