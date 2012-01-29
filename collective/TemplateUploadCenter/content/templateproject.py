@@ -293,5 +293,13 @@ class templateproject(folder.ATFolder):
         """
         return self.getAvailableCategoriesAsDisplayList()
     
+    security.declareProtected(permissions.View, 'getSelfCertificationCriteriaVocab')
+    def getSelfCertificationCriteriaVocab(self):
+        """Get self-certification criteria vocabulary from parent project area
+        via acquisition.
+        """
+        return self.getAvailableSelfCertificationCriteriaAsDisplayList()
+    
+
 
 atapi.registerType(templateproject, PROJECTNAME)
