@@ -15,7 +15,7 @@
 <body>
 
 <div metal:fill-slot="main"
-     >
+       >
      <div metal:define-macro="main"
         tal:define="is_editable context/@@plone_context_state/is_editable;
                    ">
@@ -23,7 +23,14 @@
         <h1 class="documentFirstHeading">
             <span tal:replace="here/title_or_id">Title or id</span>
         </h1>
-
+        <div id="project_logo_wrapper"
+         tal:condition="here/getLogo | nothing">
+            <a tal:omit-tag="not: here/getLogoURL"
+               tal:attributes="href here/getLogoURL">
+                <img tal:replace="structure here/getLogo" />
+            </a>
+        </div>
+        			
         <div tal:content="structure provider:plone.belowcontenttitle" />
         <p class="documentDescription"
              tal:content="here/Description">
@@ -32,22 +39,11 @@
 
         <h2 i18n:translate="label_project_description">Project Description</h2>
     
-        <div id="project_logo_wrapper"
-         tal:condition="here/getLogo | nothing">
-            <a tal:omit-tag="not: here/getLogoURL"
-               tal:attributes="href here/getLogoURL">
-                <img tal:replace="structure here/getLogo" />
-            </a>
-        </div>
+		
          
         <div tal:replace="structure here/getText" />
         
 
- 
-    <h2 i18n:translate="heading_available_template_files">
-      Available Template Files
-    </h2>
- 
     <div style="margin-top: 1em;">
 
       <tal:nodownloads tal:condition="not: here/contentValues">
@@ -63,7 +59,11 @@
         </div>
         
       </tal:nodownloads>
-        
+      
+
+         
+  
+ 
  </div>
  
                  <div class="visualClear"></div>
@@ -86,23 +86,43 @@
            <table class="listing release_table">
                 <thead>
                     <tr>
-                        <th i18n:translate="">Version</th>
-                        <th i18n:translate="">Released</th>
+                        <th i18n:translate="">Filelink</th>
+                        <th i18n:translate="">Filename</th>
                         <th i18n:translate="">Description</th>
                         <th i18n:translate="">Compatibility</th>
                         <th i18n:translate="">Licenses</th>
-                        <th i18n:translate="">Status</th>
                     </tr>
                 </thead>
                 <tbody>
-                   <tr>
-                       <td></td>
-                       <td></td>
-                       <td></td>
-                       <td></td>
-                       <td></td>
-                       <td></td>
+                <div tal:repeat="file here/contentValues">
+                    <tr>
+                       <td><a class="link-plain"
+             tal:attributes="href file/@@downloadfile_view/direct_url">
+            <img src="" alt="" 
+                 style="float: left; display: block; margin: 0 0.5em 0.5em 0;"
+                 />
+          </a>
+          
+          <a class="link-plain"
+             tal:attributes="href file/@@downloadfile_view/direct_url">
+            <span tal:replace="file/Title">Product Package</span>
+          </a>
+    
+  </td>
+                       <td><span tal:content="file/title" /></td>
+                       <td><span tal:content="file/description" /></td>
+                       <td class="compatability">
+                            <tal:loop repeat="compatibility file/compatibility">
+                                 <div tal:content="compatibility"/>
+                            </tal:loop>
+                       </td>
+                       <td><span tal:content="file/license" />
+                           <span tal:content="file/license2" />
+                           <span tal:content="file/license3" />
+                       
+                       </td>
                    </tr>
+                  </div> 
                 </tbody>
             </table>
          </div>     

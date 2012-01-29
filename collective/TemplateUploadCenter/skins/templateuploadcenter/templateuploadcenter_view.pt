@@ -17,43 +17,133 @@
 <body>
 
   <div metal:fill-slot="main"
-       tal:define="view nocall:context/@@templateuploadcenter_view">
+       tal:define="view context/@@category_view;
+            view nocall:context/@@templateuploadcenter_view;
+            catalog nocall:here/portal_catalog;
+            herePath python:'/'.join(here.getPhysicalPath());
+            sort_on   request/sort_on | string:getDownloadCount;
+            currentCategory request/getCategories | string:;
+            currentVersion request/getCompatibility | string:any;
+            SearchableText request/SearchableText | string:;
 
-    <h1 tal:content="context/title_or_id" class="documentFirstHeading">
-      <tal:comment replace="nothing">Title or id</tal:comment>
-    </h1>
+            cropText nocall:context/@@plone/cropText;
+		    toLocalizedTime nocall:context/@@plone/toLocalizedTime;">
+<div class="grid-row">
 
-    
-    <div class="feedButton" >
-       <a href="" tal:attributes="href view/rss_url">
-              <img i18n:attributes="title title_rss_feed; alt label_rss_feed;"
-                   tal:attributes="src string:$portal_url/rss.gif"
-                   src="rss.gif"
-                   alt="RSS Feed"
-                   title="RSS feed of the latest releases" />
-         </a>
-    </div>
-    
-    
+	<div class="grid-cell position-two-thirds width-third">
+		<div class="splash pullout" id="sidebar-downloads">
+
+			
+
+			<span tal:content="structure here/addon_description | nothing"/>
+            <p class="current-projects" i18n:translate="">Currently there are <span tal:content="here/product_title" i18n:name="product_title" /> projects 
+				with  releases available.
+			</p>
+			<a class="pointer" tal:attributes="href string:${here/absolute_url}/createObject?type_name=templateproject" i18n:translate="">Submit your <span tal:content="here/product_title | string:Add-on" i18n:name="product_title_addon" /></a>
+		</div>
+	</div>
+	</div>
+	<div class="grid-row">
+<div class="grid-cell position-leftmost width-two-thirds">
+		<div class="panepsc">
+
+			<h2 tal:condition="here/product_title" i18n:translate="">
+				<span tal:content="here/product_title" i18n:name="product_title" /> Projects
+			</h2> 
+
+
+        <form id="product_select" class="even" style="padding: 1em" action="#" tal:attributes="action string:${here/absolute_url}">
+            <label i18n:translate="label_show">Show</label>
+            <select name="getCategories">
+                <option value="" i18n:translate="label_all_categories">All categories</option>
+                <tal:block tal:repeat="cat here/availableCategories">
+                    
+                </tal:block>
+            </select>
+            <label i18n:translate="label_for">for</label>
+            <select name="getCompatibility">
+                <tal:block tal:repeat="version here/getAvailableVersions">
+                    <option value="LibreOffice 3.5">LibreOffice 3.5</option>
+                   
+                </tal:block>
+                
+                <tal:block condition="nothing" tal:repeat="version python:catalog.uniqueValuesFor('getCompatibility')">
+                    <option tal:content="version"
+                            tal:attributes="value version;
+                                            selected python:test(currentVersion==version,'selected',nothing)">
+                        <tal:comment replace="nothing">Plone 3.0</tal:comment>
+                    </option>
+                </tal:block>
+            </select>
+            
+            
+                    <label for="project-sort" i18n:translate="">Sort On</label>
+                    <select name="sort_on" id="project-sort" 
+                            onchange="this.form.submit()">
+                        <tal:comment replace="nothing">Featured items are sorted by rating</tal:comment>
+                        
+                        <option value="getDownloadCount"
+                            tal:attributes="selected    python:sort_on == 'getDownloadCount' and 'selected'"
+                            i18n:translate="">Most Downloaded</option>
+                     
+                        <option value="positive_ratings"
+                            tal:attributes="selected    python:sort_on == 'positive_ratings' and 'selected'" 
+                            i18n:translate="">Highest Rated</option>
+
+
+                        <option value="getLatestReleaseDate"
+                            tal:attributes="selected    python:sort_on == 'getLatestReleaseDate' and 'selected' or ''"
+                            i18n:translate="">Recently Updated</option>
+                        <option value="created"
+                            tal:attributes="selected    python:sort_on == 'created' and 'selected' or ''"
+                        i18n:translate="">Newest</option>
+                    </select>
+                    
+            
+             
+            <input class="context" type="submit" name="product_search" value="Update"
+                   i18n:attributes="value label_update_form_package_releases" />
+        </form>
+
+ 
     <p class="documentDescription"
        tal:content="context/Description">
       <tal:comment replace="nothing">Description.</tal:comment>
     </p>
-    <form>
-      <select style="float: right; clear: right"
-              onchange="window.location.href=this.options[this.selectedIndex].value">
-        <option value="" i18n:translate="label_go_directly_project">Go directly to project&hellip;</option>
-        
-      </select>
-    </form>
+   
 
-    <p class="discreet" i18n:translate="help_latest_releases_each_category">
-    The latest releases in each category. To see all projects in a specific 
+    <p class="discreet" i18n:translate="help_latest_projects_each_category">
+    The latest projects in each category. To see all projects in a specific 
     category, click "Show all".
     </p>
 
-  
-    <div class="visualClear"><!----></div>
+  </div>
+		</div>
+	<div class="grid-cell position-two-thirds width-third">
+		<div class="sidebar">
+
+			<h2 tal:condition="here/product_title" i18n:translate="">
+				Browse <span tal:content="here/product_title" i18n:name="product_title" /> by Category
+			</h2> 
+			<h2 tal:condition="not:here/product_title" i18n:translate="">Browse Add-ons by Category</h2> 
+
+			<ol id="add-on-categories">
+				<tal:categories repeat="cat here/availableCategories">
+
+				<li><a href=""
+							tal:define="csplit python:[s.strip() for s in cat.split('|')]; cid python:csplit[0]"
+							tal:attributes="href string:${here/absolute_url}?getCategories=${cid}&getCompatibility=any"
+							tal:content="python:csplit[1]"
+							><tal:comment replace="nothing">Plone releases</tal:comment></a></li>
+				</tal:categories>
+			</ol>
+
+		</div>
+	</div> 
+		</div> 
+
+	    <div class="visualClear"><!----></div>
+
 
     <div class="poweredBy">
       <span i18n:translate="label_powered_by">Powered by </span>
@@ -63,8 +153,12 @@
             <span i18n:translate="label_powered_by_psc">Template Upload Center for Plone</span>
       </a>
     </div>
+    
 
-  </div>
+
+    
+
+</div> 
 
 </body>
 </html>
