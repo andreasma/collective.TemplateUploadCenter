@@ -74,22 +74,6 @@ templateprojectSchema = folder.ATFolderSchema.copy() + atapi.Schema((
         ),
     ),                                                                     
 
-    
-    atapi.LinesField('classifiers',
-        multiValued=1,
-        required=0,
-        vocabulary='getClassifiersVocab',
-        enforceVocabulary=1,
-        schemata="metadata",
-        index='KeywordIndex:schema',
-        widget=atapi.MultiSelectionWidget(
-            label=u'Classifiers',
-            description=u'Trove classifiers for this item.',
-            i18n_domain='collective.TemplateUploadCenter',
-            rows=6,
-        ),
-    ),
-
 
     atapi.LinesField('categories',
         multiValued=1,
