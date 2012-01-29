@@ -1,6 +1,8 @@
 from Products.Five.browser import BrowserView
 from Products.CMFCore.utils import getToolByName
 from Acquisition import aq_inner
+from Products.Archetypes.atapi import DisplayList
+import re
 
 
 
@@ -27,4 +29,17 @@ class TemplateProjectView(BrowserView):
     def get_legal_downloaddisclaimer(self):
         tuc = self.context.getParentNode()
         return tuc.getLegal_downloaddisclaimer()
+    
+    def compatibility_vocab(self):
+        """Get the available compatability versions from the parent project
+           area via acqusition.
+        """
+        return self.context.getAvailableVersionsAsDisplayList()
+
+    def license_vocab(self):
+        """Get the available licenses from the parent project area via
+         acqusition.
+        """
+        return self.context.getAvailableLicensesAsDisplayList()
+
     
