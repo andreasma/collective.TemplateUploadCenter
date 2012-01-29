@@ -25,5 +25,16 @@ class TemplateCenterView(BrowserView):
                 "review_state=alpha&review_state=beta&" \
                 "review_state=release-candidate&review_state=final" \
                 % self.context.absolute_url()
+
     
+    def can_add_project(self):
+        """Determine if the current user has permission to add a project
+        """
+        return self.membership.checkPermission('TemplateUploadCenter: Add Project', self.context)
+    
+        
+    def project_count(self):
+        """Return number of projects
+        """
+        return len(self.catalog(portal_type = 'templateproject', path = self.context_path))
         
